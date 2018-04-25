@@ -8,6 +8,49 @@
 
 #import "ASWebServiceSDK.h"
 
+@interface ASWebServiceSDK ()
+@property (strong, nonatomic, readwrite) NSString *httpbinDomain;
+@property (strong, nonatomic, readwrite) NSString *endPointGet;
+@property (strong, nonatomic, readwrite) NSString *endPointPost;
+@property (strong, nonatomic, readwrite) NSString *endPointImagePNG;
+
+@end
+
 @implementation ASWebServiceSDK
+-(NSString*) httpbinDomain {
+    return @"http://httpbin.org/";
+}
+-(NSString*) endPointGet {
+    return @"get";
+}
+
+-(NSString*) endPointPost {
+    return @"post";
+}
+
+-(NSString*) endPointImagePNG {
+    return @"image/png";
+}
+
+-(void)fetchGetResponseWithCallback: (void(^)(NSDictionary *, NSError *)) callback {
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSString *getURLString = [[NSString alloc] initWithFormat: @"%@%@",self.httpbinDomain, self.endPointGet];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:getURLString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error != nil) {
+            callback(nil, error);
+        }
+        NSDictionary* jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@", jsonObject);
+        callback(jsonObject, nil);
+    }];
+    [dataTask resume];
+    
+}
+-(void)postCustomerNamer:(NSString *)name callback: (void(^)(NSDictionary *, NSError *)) callback {
+    
+}
+-(void)fetchImageWithCallback: (void(^)(UIImage *, NSError *)) callback {
+    
+}
 
 @end

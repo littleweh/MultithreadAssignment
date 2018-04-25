@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ASWebServiceSDK.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    ASWebServiceSDK *httpbinMan = [[ASWebServiceSDK alloc]init];
+    [httpbinMan fetchGetResponseWithCallback:^(NSDictionary *response, NSError *error) {
+        
+    }];
+    
 }
 
 

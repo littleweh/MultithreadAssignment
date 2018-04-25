@@ -13,6 +13,7 @@
 		798FCC6820905960002EB4AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798FCC6720905960002EB4AA /* Assets.xcassets */; };
 		798FCC6B20905960002EB4AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798FCC6920905960002EB4AA /* LaunchScreen.storyboard */; };
 		798FCC6E20905960002EB4AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC6D20905960002EB4AA /* main.m */; };
+		798FCC7620905997002EB4AA /* ASWebServiceSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC7520905997002EB4AA /* ASWebServiceSDK.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		798FCC6A20905960002EB4AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		798FCC6C20905960002EB4AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		798FCC6D20905960002EB4AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		798FCC7420905997002EB4AA /* ASWebServiceSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASWebServiceSDK.h; sourceTree = "<group>"; };
+		798FCC7520905997002EB4AA /* ASWebServiceSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASWebServiceSDK.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 				798FCC5F20905960002EB4AA /* AppDelegate.m */,
 				798FCC6120905960002EB4AA /* ViewController.h */,
 				798FCC6220905960002EB4AA /* ViewController.m */,
+				798FCC7420905997002EB4AA /* ASWebServiceSDK.h */,
+				798FCC7520905997002EB4AA /* ASWebServiceSDK.m */,
 				798FCC6420905960002EB4AA /* Main.storyboard */,
 				798FCC6720905960002EB4AA /* Assets.xcassets */,
 				798FCC6920905960002EB4AA /* LaunchScreen.storyboard */,
@@ -143,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				798FCC6320905960002EB4AA /* ViewController.m in Sources */,
+				798FCC7620905997002EB4AA /* ASWebServiceSDK.m in Sources */,
 				798FCC6E20905960002EB4AA /* main.m in Sources */,
 				798FCC6020905960002EB4AA /* AppDelegate.m in Sources */,
 			);
