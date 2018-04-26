@@ -17,24 +17,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[ASWebServiceSDK sharedInstance] fetchGetResponseWithCallback:^(NSDictionary *result, NSError *error) {
-//        NSLog(@"args: %@", [result objectForKey:@"args"]);
-//        NSLog(@"headers: %@", [result objectForKey:@"headers"]);
-//        NSLog(@"origin: %@", [result objectForKey:@"origin"]);
-//        NSLog(@"url: %@", [result objectForKey:@"url"]);
-//    }];
+    [[ASWebServiceSDK sharedInstance] fetchGetResponseWithCallback:^(NSDictionary *result, NSError *error) {
+        NSLog(@"args: %@", [result objectForKey:@"args"]);
+        NSLog(@"headers: %@", [result objectForKey:@"headers"]);
+        NSLog(@"origin: %@", [result objectForKey:@"origin"]);
+        NSLog(@"url: %@", [result objectForKey:@"url"]);
+    }];
 //    [[ASWebServiceSDK sharedInstance] postCustomerName:@"test" callback:^(NSDictionary *result, NSError *error) {
 //        NSLog(@"%@", result);
 //    }];
 //
-    [[ASWebServiceSDK sharedInstance] fetchImageWithCallback:^(UIImage *image, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-            imageView.frame = CGRectMake(30, 30, 100, 100);
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            [self.view addSubview:imageView];
-        });
-    }];
+//    [[ASWebServiceSDK sharedInstance] fetchImageWithCallback:^(UIImage *image, NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+//            imageView.frame = CGRectMake(30, 30, 100, 100);
+//            imageView.contentMode = UIViewContentModeScaleAspectFit;
+//            [self.view addSubview:imageView];
+//        });
+//    }];
 }
 
 

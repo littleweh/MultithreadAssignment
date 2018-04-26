@@ -49,47 +49,77 @@
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable response,
                                                                 NSError * _Nullable error) {
+                                                // response check?
+                                                if ([response respondsToSelector:@selector(statusCode)]) {
+                                                    if ([(NSHTTPURLResponse *) response statusCode] == 404) {
+                                                        callback(nil, error);
+                                                    }
+                                                }
                                                 if (error != nil) {
                                                     callback(nil, error);
                                                 }
-                                                NSDictionary* jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+                                                NSError *parseJsonError = nil;
+                                                NSDictionary* jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseJsonError];
                                                 NSLog(@"%@", jsonObject);
-                                                callback(jsonObject, nil);
+                                                if (!parseJsonError) {
+                                                    callback(jsonObject, nil);
+                                                } else {
+                                                    callback(nil, parseJsonError);
+                                                }
     }];
     [dataTask resume];
-    
 }
+
 -(void)postCustomerName:(NSString *)name callback: (void(^)(NSDictionary *, NSError *)) callback {
     NSString *postURLString = [[NSString alloc] initWithFormat:@"%@%@?custname=%@", self.httpbinDomain, self.endPointPost, name];
     NSURL *postURL = [NSURL URLWithString:postURLString];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:postURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:postURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
-    // set headers??
     
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error != nil) {
-            callback(nil, error);
-        }
-        NSLog(@"%@", response);
-        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        callback(jsonObject, nil);
-        
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData * _Nullable data,
+                                                                    NSURLResponse * _Nullable response,
+                                                                    NSError * _Nullable error) {
+                                                    // response check? how?
+                                                    if ([response respondsToSelector:@selector(statusCode)]) {
+                                                        if ([(NSHTTPURLResponse *) response statusCode] == 404) {
+                                                            callback(nil, error);
+                                                        }
+                                                    }
+                                                    if (error != nil) {
+                                                        callback(nil, error);
+                                                    }
+                                                    NSLog(@"%@", response);
+                                                    NSError *parseJsonError = nil;
+                                                    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseJsonError];
+                                                    if (!parseJsonError) {
+                                                        callback(jsonObject, nil);
+                                                    } else {
+                                                        callback(nil, parseJsonError);
+                                                    }
     }];
     [dataTask resume];
 }
+
 -(void)fetchImageWithCallback: (void(^)(UIImage *, NSError *)) callback {
     NSString *fetchImageURLString = [NSString stringWithFormat:@"%@%@", self.httpbinDomain, self.endPointImagePNG];
     NSURL *fetchImageURL = [NSURL URLWithString:fetchImageURLString];
     
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:fetchImageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error != nil) {
-            callback(nil, error);
-        }
-        UIImage *image = [UIImage imageWithData:data];
-        callback(image, nil);
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:fetchImageURL
+                                            completionHandler:^(NSData * _Nullable data,
+                                                                NSURLResponse * _Nullable
+                                                                response, NSError * _Nullable error) {
+                                                if (error != nil) {
+                                                    callback(nil, error);
+                                                }
+                                                UIImage *image = [UIImage imageWithData:data];
+                                                callback(image, nil);
     }];
     [dataTask resume];
     

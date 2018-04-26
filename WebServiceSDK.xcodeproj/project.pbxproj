@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		792FD4252091AE2800DC1462 /* WebServiceSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */; };
 		798FCC6020905960002EB4AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC5F20905960002EB4AA /* AppDelegate.m */; };
 		798FCC6320905960002EB4AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC6220905960002EB4AA /* ViewController.m */; };
 		798FCC6620905960002EB4AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798FCC6420905960002EB4AA /* Main.storyboard */; };
@@ -16,7 +17,20 @@
 		798FCC7620905997002EB4AA /* ASWebServiceSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC7520905997002EB4AA /* ASWebServiceSDK.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		792FD4272091AE2800DC1462 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 798FCC5320905960002EB4AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 798FCC5A20905960002EB4AA;
+			remoteInfo = WebServiceSDK;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		792FD4222091AE2800DC1462 /* WebServiceSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebServiceSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebServiceSDKTests.m; sourceTree = "<group>"; };
+		792FD4262091AE2800DC1462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		798FCC5B20905960002EB4AA /* WebServiceSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebServiceSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798FCC5E20905960002EB4AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		798FCC5F20905960002EB4AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -32,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		792FD41F2091AE2800DC1462 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		798FCC5820905960002EB4AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +63,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		792FD4232091AE2800DC1462 /* WebServiceSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */,
+				792FD4262091AE2800DC1462 /* Info.plist */,
+			);
+			path = WebServiceSDKTests;
+			sourceTree = "<group>";
+		};
 		798FCC5220905960002EB4AA = {
 			isa = PBXGroup;
 			children = (
 				798FCC5D20905960002EB4AA /* WebServiceSDK */,
+				792FD4232091AE2800DC1462 /* WebServiceSDKTests */,
 				798FCC5C20905960002EB4AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				798FCC5B20905960002EB4AA /* WebServiceSDK.app */,
+				792FD4222091AE2800DC1462 /* WebServiceSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +111,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		792FD4212091AE2800DC1462 /* WebServiceSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 792FD42B2091AE2800DC1462 /* Build configuration list for PBXNativeTarget "WebServiceSDKTests" */;
+			buildPhases = (
+				792FD41E2091AE2800DC1462 /* Sources */,
+				792FD41F2091AE2800DC1462 /* Frameworks */,
+				792FD4202091AE2800DC1462 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				792FD4282091AE2800DC1462 /* PBXTargetDependency */,
+			);
+			name = WebServiceSDKTests;
+			productName = WebServiceSDKTests;
+			productReference = 792FD4222091AE2800DC1462 /* WebServiceSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		798FCC5A20905960002EB4AA /* WebServiceSDK */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 798FCC7120905960002EB4AA /* Build configuration list for PBXNativeTarget "WebServiceSDK" */;
@@ -105,6 +155,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Ada Kao";
 				TargetAttributes = {
+					792FD4212091AE2800DC1462 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 798FCC5A20905960002EB4AA;
+					};
 					798FCC5A20905960002EB4AA = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -125,11 +180,19 @@
 			projectRoot = "";
 			targets = (
 				798FCC5A20905960002EB4AA /* WebServiceSDK */,
+				792FD4212091AE2800DC1462 /* WebServiceSDKTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		792FD4202091AE2800DC1462 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		798FCC5920905960002EB4AA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -143,6 +206,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		792FD41E2091AE2800DC1462 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				792FD4252091AE2800DC1462 /* WebServiceSDKTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		798FCC5720905960002EB4AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,6 +226,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		792FD4282091AE2800DC1462 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 798FCC5A20905960002EB4AA /* WebServiceSDK */;
+			targetProxy = 792FD4272091AE2800DC1462 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		798FCC6420905960002EB4AA /* Main.storyboard */ = {
@@ -176,6 +255,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		792FD4292091AE2800DC1462 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6VGZ364YLD;
+				INFOPLIST_FILE = WebServiceSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LostRFound.WebServiceSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebServiceSDK.app/WebServiceSDK";
+			};
+			name = Debug;
+		};
+		792FD42A2091AE2800DC1462 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6VGZ364YLD;
+				INFOPLIST_FILE = WebServiceSDKTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LostRFound.WebServiceSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebServiceSDK.app/WebServiceSDK";
+			};
+			name = Release;
+		};
 		798FCC6F20905960002EB4AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -311,6 +420,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		792FD42B2091AE2800DC1462 /* Build configuration list for PBXNativeTarget "WebServiceSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				792FD4292091AE2800DC1462 /* Debug */,
+				792FD42A2091AE2800DC1462 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		798FCC5620905960002EB4AA /* Build configuration list for PBXProject "WebServiceSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
