@@ -116,4 +116,20 @@
     }];
 }
 
+-(void) testFetchImageWithCallback {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"testFetchImagePNG"];
+    
+    [[ASWebServiceSDK sharedInstance] fetchImageWithCallback:^(UIImage *image, NSError *error) {
+        XCTAssert([image isKindOfClass:[UIImage class]], @"image type: %@", NSStringFromClass([image class]));
+        
+        [expectation fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+    }];
+}
+
 @end
