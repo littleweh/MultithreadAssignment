@@ -17,8 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[ASWebServiceSDK sharedInstance] fetchGetResponseWithCallback:^(NSDictionary *response, NSError *error) {
-        
+//    [[ASWebServiceSDK sharedInstance] fetchGetResponseWithCallback:^(NSDictionary *result, NSError *error) {
+//        NSLog(@"args: %@", [result objectForKey:@"args"]);
+//        NSLog(@"headers: %@", [result objectForKey:@"headers"]);
+//        NSLog(@"origin: %@", [result objectForKey:@"origin"]);
+//        NSLog(@"url: %@", [result objectForKey:@"url"]);
+//    }];
+    [[ASWebServiceSDK sharedInstance] postCustomerNamer:@"test" callback:^(NSDictionary *result, NSError *error) {
+        NSLog(@"%@", result);
     }];
     
 }
