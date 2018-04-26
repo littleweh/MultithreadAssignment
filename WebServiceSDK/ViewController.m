@@ -17,8 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ASWebServiceSDK *httpbinMan = [[ASWebServiceSDK alloc]init];
-    [httpbinMan fetchGetResponseWithCallback:^(NSDictionary *response, NSError *error) {
+    [[ASWebServiceSDK sharedInstance] fetchGetResponseWithCallback:^(NSDictionary *response, NSError *error) {
         
     }];
     

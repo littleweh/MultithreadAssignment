@@ -32,6 +32,15 @@
     return @"image/png";
 }
 
++(instancetype) sharedInstance {
+    static ASWebServiceSDK *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[ASWebServiceSDK alloc]init];
+    });
+    return instance;
+}
+
 -(void)fetchGetResponseWithCallback: (void(^)(NSDictionary *, NSError *)) callback {
     NSURLSession *session = [NSURLSession sharedSession];
     NSString *getURLString = [[NSString alloc] initWithFormat: @"%@%@",self.httpbinDomain, self.endPointGet];
