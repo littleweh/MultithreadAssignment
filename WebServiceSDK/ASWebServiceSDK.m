@@ -59,7 +59,7 @@
     [dataTask resume];
     
 }
--(void)postCustomerNamer:(NSString *)name callback: (void(^)(NSDictionary *, NSError *)) callback {
+-(void)postCustomerName:(NSString *)name callback: (void(^)(NSDictionary *, NSError *)) callback {
     NSString *postURLString = [[NSString alloc] initWithFormat:@"%@%@?custname=%@", self.httpbinDomain, self.endPointPost, name];
     NSURL *postURL = [NSURL URLWithString:postURLString];
     
@@ -80,6 +80,18 @@
     [dataTask resume];
 }
 -(void)fetchImageWithCallback: (void(^)(UIImage *, NSError *)) callback {
+    NSString *fetchImageURLString = [NSString stringWithFormat:@"%@%@", self.httpbinDomain, self.endPointImagePNG];
+    NSURL *fetchImageURL = [NSURL URLWithString:fetchImageURLString];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:fetchImageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error != nil) {
+            callback(nil, error);
+        }
+        UIImage *image = [UIImage imageWithData:data];
+        callback(image, nil);
+    }];
+    [dataTask resume];
     
 }
 
