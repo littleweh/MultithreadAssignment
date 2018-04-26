@@ -18,18 +18,18 @@
 
 @implementation ASWebServiceSDK
 -(NSString*) httpbinDomain {
-    return @"http://httpbin.org/";
+    return [NSString stringWithFormat:@"http://httpbin.org/"];
 }
 -(NSString*) endPointGet {
-    return @"get";
+    return [NSString stringWithFormat:@"get"];
 }
 
 -(NSString*) endPointPost {
-    return @"post";
+    return [NSString stringWithFormat:@"post"];
 }
 
 -(NSString*) endPointImagePNG {
-    return @"image/png";
+    return [NSString stringWithFormat:@"image/png"];
 }
 
 +(instancetype) sharedInstance {
