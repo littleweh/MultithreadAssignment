@@ -86,12 +86,13 @@
         XCTAssert([[rootObject objectForKey:@"json"] isKindOfClass:[NSNull class]], @"json class: %@", NSStringFromClass([[rootObject objectForKey:@"json"] class]));
         XCTAssert([[rootObject objectForKey:@"origin"] isKindOfClass:[NSString class]], @"origin class: %@", NSStringFromClass([[rootObject objectForKey:@"origin"] class]));
         XCTAssert([[rootObject objectForKey:@"url"] isKindOfClass:[NSString class]], @"url class: %@", NSStringFromClass([[rootObject objectForKey:@"url"] class]));
-        
-        NSDictionary *argObject = [rootObject objectForKey:@"args"];
-        XCTAssert([argObject objectForKey:@"custname"] == inputName, @"customer name: %@", [argObject objectForKey:@"custname"]);
+
+        NSDictionary *formObject = [rootObject objectForKey:@"form"];
+        XCTAssert([formObject objectForKey:@"custname"] == inputName, @"customer name: %@", [formObject objectForKey:@"custname"]);
+
         
         NSDictionary *headersObject = [rootObject objectForKey:@"headers"];
-        
+
         XCTAssert([headersObject objectForKey:@"Accept"] != nil, @"there's no object with key \"Accept\" existed");
         XCTAssert([headersObject objectForKey:@"Accept-Encoding"] != nil, @"there's no object with key \"Accept-Encoding\" existed");
         XCTAssert([headersObject objectForKey:@"Accept-Language"] != nil, @"there's no object with key \"Accept-Language\" existed");
@@ -121,7 +122,6 @@
     
     [[ASWebServiceSDK sharedInstance] fetchImageWithCallback:^(UIImage *image, NSError *error) {
         XCTAssert([image isKindOfClass:[UIImage class]], @"image type: %@", NSStringFromClass([image class]));
-        
         [expectation fulfill];
     }];
     
