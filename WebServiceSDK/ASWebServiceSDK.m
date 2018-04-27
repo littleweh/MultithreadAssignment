@@ -8,31 +8,12 @@
 
 #import "ASWebServiceSDK.h"
 
-const static NSString * ASTTTT  = @"xxxxx";
-
-@interface ASWebServiceSDK ()
-@property (strong, nonatomic, readwrite) NSString *httpbinDomain;
-@property (strong, nonatomic, readwrite) NSString *endPointGet;
-@property (strong, nonatomic, readwrite) NSString *endPointPost;
-@property (strong, nonatomic, readwrite) NSString *endPointImagePNG;
-
-@end
+static NSString *const httpBinDomain = @"http://httpbin.org/";
+static NSString *const endPointGet = @"get";
+static NSString *const endPointPost = @"post";
+static NSString *const endPointImagePNG = @"image/png";
 
 @implementation ASWebServiceSDK
--(NSString*) httpbinDomain {
-    return [NSString stringWithFormat:@"http://httpbin.org/"];
-}
--(NSString*) endPointGet {
-    return [NSString stringWithFormat:@"get"];
-}
-
--(NSString*) endPointPost {
-    return [NSString stringWithFormat:@"post"];
-}
-
--(NSString*) endPointImagePNG {
-    return [NSString stringWithFormat:@"image/png"];
-}
 
 +(instancetype) sharedInstance {
     static ASWebServiceSDK *instance = nil;
@@ -45,13 +26,14 @@ const static NSString * ASTTTT  = @"xxxxx";
 
 -(void)fetchGetResponseWithCallback: (void(^)(NSDictionary *, NSError *)) callback {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSString *getURLString = [[NSString alloc] initWithFormat: @"%@%@",self.httpbinDomain, self.endPointGet];
+    NSString *getURLString = [[NSString alloc] initWithFormat: @"%@%@",httpBinDomain, endPointGet];
     NSURL *getURL = [NSURL URLWithString:getURLString];
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:getURL
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable response,
                                                                 NSError * _Nullable error) {
                                                 // response check?
+                                                // use method, enum, switch to handle status code; 500 -> return
                                                 if ([response respondsToSelector:@selector(statusCode)]) {
                                                     if ([(NSHTTPURLResponse *) response statusCode] == 404) {
                                                         callback(nil, error);
@@ -69,15 +51,13 @@ const static NSString * ASTTTT  = @"xxxxx";
                                                 } else {
                                                     callback(nil, parseJsonError);
                                                 }
-//                                                NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{}];
-//                                                params = @{@"abc": data[@"sfs"] ?: @""};
-                                                // Mantle
+
     }];
     [dataTask resume];
 }
 
 -(void)postCustomerName:(NSString *)name callback: (void(^)(NSDictionary *, NSError *)) callback {
-    NSString *postURLString = [[NSString alloc] initWithFormat:@"%@%@", self.httpbinDomain, self.endPointPost];
+    NSString *postURLString = [[NSString alloc] initWithFormat:@"%@%@", httpBinDomain, endPointPost];
     NSURL *postURL = [NSURL URLWithString:postURLString];
 
     NSString *post = [NSString stringWithFormat:@"custname=%@", name];
@@ -120,7 +100,7 @@ const static NSString * ASTTTT  = @"xxxxx";
 }
 
 -(void)fetchImageWithCallback: (void(^)(UIImage *, NSError *)) callback {
-    NSString *fetchImageURLString = [NSString stringWithFormat:@"%@%@", self.httpbinDomain, self.endPointImagePNG];
+    NSString *fetchImageURLString = [NSString stringWithFormat:@"%@%@", httpBinDomain, endPointImagePNG];
     NSURL *fetchImageURL = [NSURL URLWithString:fetchImageURLString];
     
     NSURLSession *session = [NSURLSession sharedSession];
