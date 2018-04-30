@@ -26,8 +26,9 @@
     [[ASWebServiceSDK sharedInstance] postCustomerName:@"test" callback:^(NSDictionary *result, NSError *error) {
         if (error) {
             NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSLog(@"%@", result);
         }
-        NSLog(@"%@", result);
     }];
 //
 //    [[ASWebServiceSDK sharedInstance] fetchImageWithCallback:^(UIImage *image, NSError *error) {
