@@ -24,6 +24,9 @@
 //        NSLog(@"url: %@", [result objectForKey:@"url"]);
 //    }];
     [[ASWebServiceSDK sharedInstance] postCustomerName:@"test" callback:^(NSDictionary *result, NSError *error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
         NSLog(@"%@", result);
     }];
 //

@@ -37,20 +37,24 @@ static NSString *const endPointImagePNG = @"image/png";
                                                 if ([response respondsToSelector:@selector(statusCode)]) {
                                                     if ([(NSHTTPURLResponse *) response statusCode] == 404) {
                                                         callback(nil, error);
+                                                        return;
                                                     }
                                                 }
                                                 if (error != nil) {
                                                     callback(nil, error);
+                                                    return;
                                                 }
 
                                                 NSError *parseJsonError = nil;
                                                 NSDictionary* jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseJsonError];
-                                                NSLog(@"%@", jsonObject);
-                                                if (!parseJsonError) {
-                                                    callback(jsonObject, nil);
-                                                } else {
+                                                
+                                                if (parseJsonError) {
                                                     callback(nil, parseJsonError);
+                                                    return;
                                                 }
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    callback(jsonObject, nil);
+                                                });
 
     }];
     [dataTask resume];
@@ -82,19 +86,24 @@ static NSString *const endPointImagePNG = @"image/png";
                                                             return;
                                                         } else if ([(NSHTTPURLResponse *) response statusCode] == 404) {
                                                             callback(nil, error);
+                                                            return;
                                                         }
                                                     }
                                                     if (error != nil) {
                                                         callback(nil, error);
+                                                        return;
                                                     }
-                                                    NSLog(@"%@", response);
                                                     NSError *parseJsonError = nil;
                                                     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&parseJsonError];
-                                                    if (!parseJsonError) {
-                                                        callback(jsonObject, nil);
-                                                    } else {
+                                                    
+                                                    if (parseJsonError) {
                                                         callback(nil, parseJsonError);
+                                                        return;
                                                     }
+                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                        callback(jsonObject, nil);
+                                                    });
+
     }];
     [dataTask resume];
 }
@@ -108,11 +117,14 @@ static NSString *const endPointImagePNG = @"image/png";
                                             completionHandler:^(NSData * _Nullable data,
                                                                 NSURLResponse * _Nullable
                                                                 response, NSError * _Nullable error) {
-                                                if (error != nil) {
+                                                if (error) {
                                                     callback(nil, error);
+                                                    return;
                                                 }
                                                 UIImage *image = [UIImage imageWithData:data];
-                                                callback(image, nil);
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    callback(image, nil);
+                                                });
     }];
     [dataTask resume];
     
