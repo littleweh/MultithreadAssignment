@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		792FD4252091AE2800DC1462 /* WebServiceSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */; };
+		798C3C4B2099615500E4070E /* HTTPBinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C3C4A2099615500E4070E /* HTTPBinManager.m */; };
+		798C3C4E2099639100E4070E /* HTTPBinManagerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C3C4D2099639100E4070E /* HTTPBinManagerOperation.m */; };
+		798C3C502099B50500E4070E /* HTTPBinManagerOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C3C4F2099B50500E4070E /* HTTPBinManagerOperationTests.m */; };
 		798FCC6020905960002EB4AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC5F20905960002EB4AA /* AppDelegate.m */; };
 		798FCC6320905960002EB4AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC6220905960002EB4AA /* ViewController.m */; };
 		798FCC6620905960002EB4AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798FCC6420905960002EB4AA /* Main.storyboard */; };
@@ -31,6 +34,11 @@
 		792FD4222091AE2800DC1462 /* MultithreadAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultithreadAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebServiceSDKTests.m; sourceTree = "<group>"; };
 		792FD4262091AE2800DC1462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		798C3C492099615500E4070E /* HTTPBinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPBinManager.h; sourceTree = "<group>"; };
+		798C3C4A2099615500E4070E /* HTTPBinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPBinManager.m; sourceTree = "<group>"; };
+		798C3C4C2099639100E4070E /* HTTPBinManagerOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPBinManagerOperation.h; sourceTree = "<group>"; };
+		798C3C4D2099639100E4070E /* HTTPBinManagerOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPBinManagerOperation.m; sourceTree = "<group>"; };
+		798C3C4F2099B50500E4070E /* HTTPBinManagerOperationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPBinManagerOperationTests.m; sourceTree = "<group>"; };
 		798FCC5B20905960002EB4AA /* MultithreadAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultithreadAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798FCC5E20905960002EB4AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		798FCC5F20905960002EB4AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,9 +75,23 @@
 			isa = PBXGroup;
 			children = (
 				792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */,
+				798C3C4F2099B50500E4070E /* HTTPBinManagerOperationTests.m */,
 				792FD4262091AE2800DC1462 /* Info.plist */,
 			);
 			path = MultithreadAssignmentTests;
+			sourceTree = "<group>";
+		};
+		798C3C482099612500E4070E /* HTTPBinModel */ = {
+			isa = PBXGroup;
+			children = (
+				798FCC7420905997002EB4AA /* ASWebServiceSDK.h */,
+				798FCC7520905997002EB4AA /* ASWebServiceSDK.m */,
+				798C3C492099615500E4070E /* HTTPBinManager.h */,
+				798C3C4A2099615500E4070E /* HTTPBinManager.m */,
+				798C3C4C2099639100E4070E /* HTTPBinManagerOperation.h */,
+				798C3C4D2099639100E4070E /* HTTPBinManagerOperation.m */,
+			);
+			path = HTTPBinModel;
 			sourceTree = "<group>";
 		};
 		798FCC5220905960002EB4AA = {
@@ -97,8 +119,7 @@
 				798FCC5F20905960002EB4AA /* AppDelegate.m */,
 				798FCC6120905960002EB4AA /* ViewController.h */,
 				798FCC6220905960002EB4AA /* ViewController.m */,
-				798FCC7420905997002EB4AA /* ASWebServiceSDK.h */,
-				798FCC7520905997002EB4AA /* ASWebServiceSDK.m */,
+				798C3C482099612500E4070E /* HTTPBinModel */,
 				798FCC6420905960002EB4AA /* Main.storyboard */,
 				798FCC6720905960002EB4AA /* Assets.xcassets */,
 				798FCC6920905960002EB4AA /* LaunchScreen.storyboard */,
@@ -211,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				792FD4252091AE2800DC1462 /* WebServiceSDKTests.m in Sources */,
+				798C3C502099B50500E4070E /* HTTPBinManagerOperationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +243,9 @@
 				798FCC6320905960002EB4AA /* ViewController.m in Sources */,
 				798FCC7620905997002EB4AA /* ASWebServiceSDK.m in Sources */,
 				798FCC6E20905960002EB4AA /* main.m in Sources */,
+				798C3C4B2099615500E4070E /* HTTPBinManager.m in Sources */,
 				798FCC6020905960002EB4AA /* AppDelegate.m in Sources */,
+				798C3C4E2099639100E4070E /* HTTPBinManagerOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
