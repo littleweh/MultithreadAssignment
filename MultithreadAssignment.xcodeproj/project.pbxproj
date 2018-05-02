@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		792FD4252091AE2800DC1462 /* WebServiceSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */; };
 		798C3C4B2099615500E4070E /* HTTPBinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C3C4A2099615500E4070E /* HTTPBinManager.m */; };
+		798C3C4E2099639100E4070E /* HTTPBinManagerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 798C3C4D2099639100E4070E /* HTTPBinManagerOperation.m */; };
 		798FCC6020905960002EB4AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC5F20905960002EB4AA /* AppDelegate.m */; };
 		798FCC6320905960002EB4AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FCC6220905960002EB4AA /* ViewController.m */; };
 		798FCC6620905960002EB4AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798FCC6420905960002EB4AA /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		792FD4262091AE2800DC1462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		798C3C492099615500E4070E /* HTTPBinManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPBinManager.h; sourceTree = "<group>"; };
 		798C3C4A2099615500E4070E /* HTTPBinManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPBinManager.m; sourceTree = "<group>"; };
+		798C3C4C2099639100E4070E /* HTTPBinManagerOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPBinManagerOperation.h; sourceTree = "<group>"; };
+		798C3C4D2099639100E4070E /* HTTPBinManagerOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPBinManagerOperation.m; sourceTree = "<group>"; };
 		798FCC5B20905960002EB4AA /* MultithreadAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultithreadAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798FCC5E20905960002EB4AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		798FCC5F20905960002EB4AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				798FCC7520905997002EB4AA /* ASWebServiceSDK.m */,
 				798C3C492099615500E4070E /* HTTPBinManager.h */,
 				798C3C4A2099615500E4070E /* HTTPBinManager.m */,
+				798C3C4C2099639100E4070E /* HTTPBinManagerOperation.h */,
+				798C3C4D2099639100E4070E /* HTTPBinManagerOperation.m */,
 			);
 			path = HTTPBinModel;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				798FCC6E20905960002EB4AA /* main.m in Sources */,
 				798C3C4B2099615500E4070E /* HTTPBinManager.m in Sources */,
 				798FCC6020905960002EB4AA /* AppDelegate.m in Sources */,
+				798C3C4E2099639100E4070E /* HTTPBinManagerOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
