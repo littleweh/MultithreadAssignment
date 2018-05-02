@@ -44,20 +44,21 @@
 
             if (error) {
                 [self cancel];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
-                    }
-                });
-                return;
+                        return;
+                    });
+                }
             }
             // success
             [self.jsonObjects addObject:getRootObject];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
                     [self.delegate httpBinManagerOperation:self progress: 33.0];
-                }
-            });
+                });
+            }
             [self quitRunloop];
         }];
         
@@ -70,20 +71,23 @@
         [sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
             if (postError) {
                 [self cancel];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
                         [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
-                    }
-                });
-                return;
+                        return;
+                        
+                    });
+                }
             }
             // success
             [self.jsonObjects addObject:postCustNameObject];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
                     [self.delegate httpBinManagerOperation:self progress: 66.0];
-                }
-            });
+                });
+            }
             [self quitRunloop];
         }];
         
@@ -96,27 +100,22 @@
         [sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
             if (fetchImageError) {
                 [self cancel];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
-                    }
-                });
-                return;
+                        return;
+                    });
+                }
             }
             // success
             self.image = image;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)] && [self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate httpBinManagerOperation:self progress: 100.0];
-
-                }
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)]) {
                     [self.delegate httpBinManagerOperation:self didGetObject:self.jsonObjects didGetImage:self.image];
-                }
-            });
-
+                });
+            }
             [self quitRunloop];
-            
         }];
     }
 }

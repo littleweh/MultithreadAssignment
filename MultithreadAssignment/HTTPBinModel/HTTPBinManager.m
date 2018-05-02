@@ -34,8 +34,8 @@
 }
 
 -(void) executeOperation: (HTTPBinManagerOperation *) operation {
-    [self.operationQueue cancelAllOperations];
     [operation setDelegate:self];
+    [self.operationQueue cancelAllOperations];
     [self.operationQueue addOperation:operation];
 }
 
