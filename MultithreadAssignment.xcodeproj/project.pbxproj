@@ -28,10 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		792FD4222091AE2800DC1462 /* WebServiceSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebServiceSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		792FD4222091AE2800DC1462 /* MultithreadAssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultithreadAssignmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebServiceSDKTests.m; sourceTree = "<group>"; };
 		792FD4262091AE2800DC1462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		798FCC5B20905960002EB4AA /* WebServiceSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebServiceSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		798FCC5B20905960002EB4AA /* MultithreadAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultithreadAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798FCC5E20905960002EB4AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		798FCC5F20905960002EB4AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		798FCC6120905960002EB4AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -63,20 +63,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		792FD4232091AE2800DC1462 /* WebServiceSDKTests */ = {
+		792FD4232091AE2800DC1462 /* MultithreadAssignmentTests */ = {
 			isa = PBXGroup;
 			children = (
 				792FD4242091AE2800DC1462 /* WebServiceSDKTests.m */,
 				792FD4262091AE2800DC1462 /* Info.plist */,
 			);
-			path = WebServiceSDKTests;
+			path = MultithreadAssignmentTests;
 			sourceTree = "<group>";
 		};
 		798FCC5220905960002EB4AA = {
 			isa = PBXGroup;
 			children = (
-				798FCC5D20905960002EB4AA /* WebServiceSDK */,
-				792FD4232091AE2800DC1462 /* WebServiceSDKTests */,
+				798FCC5D20905960002EB4AA /* MultithreadAssignment */,
+				792FD4232091AE2800DC1462 /* MultithreadAssignmentTests */,
 				798FCC5C20905960002EB4AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,13 +84,13 @@
 		798FCC5C20905960002EB4AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				798FCC5B20905960002EB4AA /* WebServiceSDK.app */,
-				792FD4222091AE2800DC1462 /* WebServiceSDKTests.xctest */,
+				798FCC5B20905960002EB4AA /* MultithreadAssignment.app */,
+				792FD4222091AE2800DC1462 /* MultithreadAssignmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		798FCC5D20905960002EB4AA /* WebServiceSDK */ = {
+		798FCC5D20905960002EB4AA /* MultithreadAssignment */ = {
 			isa = PBXGroup;
 			children = (
 				798FCC5E20905960002EB4AA /* AppDelegate.h */,
@@ -105,15 +105,15 @@
 				798FCC6C20905960002EB4AA /* Info.plist */,
 				798FCC6D20905960002EB4AA /* main.m */,
 			);
-			path = WebServiceSDK;
+			path = MultithreadAssignment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		792FD4212091AE2800DC1462 /* WebServiceSDKTests */ = {
+		792FD4212091AE2800DC1462 /* MultithreadAssignmentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 792FD42B2091AE2800DC1462 /* Build configuration list for PBXNativeTarget "WebServiceSDKTests" */;
+			buildConfigurationList = 792FD42B2091AE2800DC1462 /* Build configuration list for PBXNativeTarget "MultithreadAssignmentTests" */;
 			buildPhases = (
 				792FD41E2091AE2800DC1462 /* Sources */,
 				792FD41F2091AE2800DC1462 /* Frameworks */,
@@ -124,14 +124,14 @@
 			dependencies = (
 				792FD4282091AE2800DC1462 /* PBXTargetDependency */,
 			);
-			name = WebServiceSDKTests;
+			name = MultithreadAssignmentTests;
 			productName = WebServiceSDKTests;
-			productReference = 792FD4222091AE2800DC1462 /* WebServiceSDKTests.xctest */;
+			productReference = 792FD4222091AE2800DC1462 /* MultithreadAssignmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		798FCC5A20905960002EB4AA /* WebServiceSDK */ = {
+		798FCC5A20905960002EB4AA /* MultithreadAssignment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 798FCC7120905960002EB4AA /* Build configuration list for PBXNativeTarget "WebServiceSDK" */;
+			buildConfigurationList = 798FCC7120905960002EB4AA /* Build configuration list for PBXNativeTarget "MultithreadAssignment" */;
 			buildPhases = (
 				798FCC5720905960002EB4AA /* Sources */,
 				798FCC5820905960002EB4AA /* Frameworks */,
@@ -141,9 +141,9 @@
 			);
 			dependencies = (
 			);
-			name = WebServiceSDK;
+			name = MultithreadAssignment;
 			productName = WebServiceSDK;
-			productReference = 798FCC5B20905960002EB4AA /* WebServiceSDK.app */;
+			productReference = 798FCC5B20905960002EB4AA /* MultithreadAssignment.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +166,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 798FCC5620905960002EB4AA /* Build configuration list for PBXProject "WebServiceSDK" */;
+			buildConfigurationList = 798FCC5620905960002EB4AA /* Build configuration list for PBXProject "MultithreadAssignment" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -179,8 +179,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				798FCC5A20905960002EB4AA /* WebServiceSDK */,
-				792FD4212091AE2800DC1462 /* WebServiceSDKTests */,
+				798FCC5A20905960002EB4AA /* MultithreadAssignment */,
+				792FD4212091AE2800DC1462 /* MultithreadAssignmentTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,7 +230,7 @@
 /* Begin PBXTargetDependency section */
 		792FD4282091AE2800DC1462 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 798FCC5A20905960002EB4AA /* WebServiceSDK */;
+			target = 798FCC5A20905960002EB4AA /* MultithreadAssignment */;
 			targetProxy = 792FD4272091AE2800DC1462 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -266,7 +266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = LostRFound.WebServiceSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebServiceSDK.app/WebServiceSDK";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MultithreadAssignment.app/MultithreadAssignment";
 			};
 			name = Debug;
 		};
@@ -281,7 +281,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = LostRFound.WebServiceSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebServiceSDK.app/WebServiceSDK";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MultithreadAssignment.app/MultithreadAssignment";
 			};
 			name = Release;
 		};
@@ -395,7 +395,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6VGZ364YLD;
-				INFOPLIST_FILE = WebServiceSDK/Info.plist;
+				INFOPLIST_FILE = MultithreadAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LostRFound.MultithreadAssignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,7 +409,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6VGZ364YLD;
-				INFOPLIST_FILE = WebServiceSDK/Info.plist;
+				INFOPLIST_FILE = MultithreadAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LostRFound.MultithreadAssignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -420,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		792FD42B2091AE2800DC1462 /* Build configuration list for PBXNativeTarget "WebServiceSDKTests" */ = {
+		792FD42B2091AE2800DC1462 /* Build configuration list for PBXNativeTarget "MultithreadAssignmentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				792FD4292091AE2800DC1462 /* Debug */,
@@ -429,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		798FCC5620905960002EB4AA /* Build configuration list for PBXProject "WebServiceSDK" */ = {
+		798FCC5620905960002EB4AA /* Build configuration list for PBXProject "MultithreadAssignment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				798FCC6F20905960002EB4AA /* Debug */,
@@ -438,7 +438,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		798FCC7120905960002EB4AA /* Build configuration list for PBXNativeTarget "WebServiceSDK" */ = {
+		798FCC7120905960002EB4AA /* Build configuration list for PBXNativeTarget "MultithreadAssignment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				798FCC7220905960002EB4AA /* Debug */,
