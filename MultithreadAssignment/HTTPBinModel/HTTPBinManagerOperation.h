@@ -11,6 +11,7 @@
 
 typedef enum : NSUInteger {
     httpBinManagerOperationFail = -1,
+    HTTPBinManagerOperationInProgress = 0,
     httpBinManagerOperationSuccess = 1,
 } HTTPBinManagerOperationStatus;
 
@@ -23,6 +24,10 @@ typedef enum : NSUInteger {
 @end
 
 @interface HTTPBinManagerOperation : NSOperation
+{
+    NSPort *port;
+    BOOL runloopRunning;
+}
 @property (weak, nonatomic) id <HTTPBinManagerOperationDelegate> delegate;
 
 @end

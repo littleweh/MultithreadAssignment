@@ -37,55 +37,111 @@
 #pragma mark - override main
 -(void) main {
     @autoreleasepool {
-        // call API
         ASWebServiceSDK * sdk = [ASWebServiceSDK sharedInstance];
+        
+        // fetchGetResponse
         [sdk fetchGetResponseWithCallback:^(NSDictionary *getRootObject, NSError *error) {
+
             if (error) {
-                // ToDo: cancel the whole operation
+                [self cancel];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
-                    return;
+                    if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
+                    }
                 });
+                return;
             }
             // success
             [self.jsonObjects addObject:getRootObject];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate httpBinManagerOperation:self progress: 33.0];
-            });
-            
-            [sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
-                if (postError) {
-                    // ToDo: cancel the whole operation
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
-                        return;
-                    });
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+                    [self.delegate httpBinManagerOperation:self progress: 33.0];
                 }
-                // success
-                [self.jsonObjects addObject:postCustNameObject];
+            });
+            [self quitRunloop];
+        }];
+        
+        [self doRunloop];
+        if (self.isCancelled) {
+            return;
+        }
+        
+        //postCustomerName
+        [sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
+            if (postError) {
+                [self cancel];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self progress: 66.0];
-                });
-                
-                [sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
-                    if (fetchImageError) {
-                        // ToDo: cancel the whole operation
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
-                            return;
-                        });
+                    if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
                     }
-                    // success
-                    self.image = image;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate httpBinManagerOperation:self progress: 100.0];
-                        [self.delegate httpBinManagerOperation:self didGetObject:self.jsonObjects didGetImage:self.image];
-                    });
-                    
-                }];
-            }];
+                });
+                return;
+            }
+            // success
+            [self.jsonObjects addObject:postCustNameObject];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+                    [self.delegate httpBinManagerOperation:self progress: 66.0];
+                }
+            });
+            [self quitRunloop];
+        }];
+        
+        [self doRunloop];
+        if (self.isCancelled) {
+            return;
+        }
+        
+        // fetchImage
+        [sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
+            if (fetchImageError) {
+                [self cancel];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
+                    }
+                });
+                return;
+            }
+            // success
+            self.image = image;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+                    [self.delegate httpBinManagerOperation:self progress: 100.0];
+
+                }
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)]) {
+                    [self.delegate httpBinManagerOperation:self didGetObject:self.jsonObjects didGetImage:self.image];
+                }
+            });
+
+            [self quitRunloop];
+            
         }];
     }
+}
+
+-(void)doRunloop {
+    runloopRunning = YES;
+    port = [[NSPort alloc] init];
+    [[NSRunLoop currentRunLoop] addPort:port forMode:NSRunLoopCommonModes];
+    
+    while (runloopRunning && !self.isCancelled) {
+        @autoreleasepool {
+            [[NSRunLoop currentRunLoop] runUntilDate: [NSDate dateWithTimeIntervalSinceNow:0.5]];
+        }
+    }
+    port = nil;
+}
+
+-(void)quitRunloop {
+    [port invalidate];
+    runloopRunning = NO;
+}
+
+-(void) cancel {
+    [super cancel];
+    [self quitRunloop];
 }
 
 @end
