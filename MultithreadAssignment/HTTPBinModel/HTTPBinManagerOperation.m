@@ -12,6 +12,7 @@
 @interface HTTPBinManagerOperation ()
 @property (strong, nonatomic, readwrite) NSMutableArray <NSDictionary *> * jsonObjects;
 @property (strong, nonatomic, readwrite) UIImage *image;
+@property (strong, nonatomic, readwrite) dispatch_semaphore_t semaphore;
 @end
 
 @implementation HTTPBinManagerOperation
@@ -37,12 +38,12 @@
 #pragma mark - override main
 -(void) main {
     @autoreleasepool {
+        self.semaphore = dispatch_semaphore_create(0);
         ASWebServiceSDK * sdk = [ASWebServiceSDK sharedInstance];
         
         // fetchGetResponse
         [sdk fetchGetResponseWithCallback:^(NSDictionary *getRootObject, NSError *error) {
-            [self quitRunloop];
-
+            dispatch_semaphore_signal(self.semaphore);
             if (error) {
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
@@ -62,14 +63,15 @@
             }
         }];
         
-        [self doRunloop];
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
         if (self.isCancelled) {
             return;
         }
         
+        self.semaphore = dispatch_semaphore_create(0);
         //postCustomerName
         [sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
-            [self quitRunloop];
+            dispatch_semaphore_signal(self.semaphore);
 
             if (postError) {
                 [self cancel];
@@ -92,14 +94,15 @@
             }
         }];
         
-        [self doRunloop];
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
         if (self.isCancelled) {
             return;
         }
         
+        self.semaphore = dispatch_semaphore_create(0);
         // fetchImage
         [sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
-            [self quitRunloop];
+            dispatch_semaphore_signal(self.semaphore);
             if (fetchImageError) {
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
@@ -118,6 +121,7 @@
                 });
             }
         }];
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     }
 }
 
