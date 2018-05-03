@@ -36,7 +36,7 @@ static NSString *const endPointGet = @"ge";
 
 -(void)testExecuteOperationSuccess {
     self.expectation100 = [self expectationWithDescription:@"executeOperation success"];
-    self.status = HTTPBinManagerOperationInProgress;
+    self.status = httpBinManagerOperationBegin;
     self.progress = 0.0;
     
     HTTPBinManagerOperation * operation = [[HTTPBinManagerOperation alloc] init];

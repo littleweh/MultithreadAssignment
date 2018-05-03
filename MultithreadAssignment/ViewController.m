@@ -16,6 +16,7 @@
 @property (strong, nonatomic, readwrite) UIButton *button;
 @property (strong, nonatomic, readwrite) UILabel *label;
 @property (strong, nonatomic, readwrite) UIImageView *imageView;
+@property (strong, nonatomic, readwrite) UIImage *image;
 @end
 
 @implementation ViewController
@@ -275,11 +276,12 @@
 
 -(void) buttonTapped {
     self.imageView.image = nil;
-    [self.button setEnabled:NO];
+//    [self.button setEnabled:NO];
     self.button.backgroundColor = [UIColor grayColor];
     [self.label setText:@"Progress"];
     [self.label setTextColor:[UIColor orangeColor]];
     [self.progressView setProgress:0.0];
+    [self.progressView setHidden:NO];
     
     HTTPBinManagerOperation *operation = [[HTTPBinManagerOperation alloc] init];
     HTTPBinManager *manager = [HTTPBinManager sharedInstance];
@@ -304,28 +306,27 @@
     for (NSDictionary * object in objects) {
         NSLog(@"%@", object);
     }
-    [self.imageView setImage:image];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-
-    [self.button setEnabled:YES];
+    self.image = image;
 }
 
-- (void)httpBinManager:(HTTPBinManager *)manager progress:(CGFloat)progressPercentage {
+- (void)httpBinManager:(HTTPBinManager *)manager status:(HTTPBinManagerOperationStatus)statusCode progress:(CGFloat)progressPercentage {
     NSLog(@"%f", progressPercentage);
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.progressView setProgress:progressPercentage / 100.0 animated: YES];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.progressView setProgress:progressPercentage / 100.0];
     } completion:^(BOOL finished) {
         if (progressPercentage == 100.0) {
-            [self.label setText:@"Done!"];
-            [self.label setTextColor:[UIColor blueColor]];
-            self.button.backgroundColor = [UIColor blackColor];
+            [UIView animateWithDuration:0.25 animations:^{
+                [self.label setText:@"Done!"];
+                [self.label setTextColor:[UIColor blueColor]];
+                self.button.backgroundColor = [UIColor blackColor];
+                [self.imageView setImage:self.image];
+                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+                [self.progressView setHidden:YES];
+            }];
         }
     }];
     
-}
-
-- (void)httpBinManager:(HTTPBinManager *)manager status:(HTTPBinManagerOperationStatus)statusCode {
-    NSLog(@"status: %lu", (unsigned long)statusCode);
 }
 
 @end

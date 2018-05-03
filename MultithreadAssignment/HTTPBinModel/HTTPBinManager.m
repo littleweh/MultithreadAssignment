@@ -48,15 +48,9 @@
     }
 }
 
-- (void)httpBinManagerOperation:(HTTPBinManagerOperation *)operation progress:(CGFloat)progressPercentage {
-    if ([self.delegate respondsToSelector:@selector(httpBinManager:progress:)]) {
-        [self.delegate httpBinManager:self progress:progressPercentage];
-    }
-}
-
-- (void)httpBinManagerOperation:(HTTPBinManagerOperation *)operation status:(HTTPBinManagerOperationStatus)statusCode {
-    if ([self.delegate respondsToSelector:@selector(httpBinManager:status:)]) {
-        [self.delegate httpBinManager:self status:statusCode];
+- (void)httpBinManagerOperation:(HTTPBinManagerOperation *)operation status:(HTTPBinManagerOperationStatus)statusCode progress:(CGFloat)progressPercentage{
+    if ([self.delegate respondsToSelector:@selector(httpBinManager:status:progress:)]) {
+        [self.delegate httpBinManager:self status:statusCode progress:progressPercentage];
     }
 }
 

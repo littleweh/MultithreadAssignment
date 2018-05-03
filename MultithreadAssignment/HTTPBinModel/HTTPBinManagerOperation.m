@@ -45,18 +45,18 @@
 
             if (error) {
                 [self cancel];
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
+                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:0.0];
                         return;
                     });
                 }
             }
             // success
             [self.jsonObjects addObject:getRootObject];
-            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self progress: 33.0];
+                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationInProgress progress: 33.0];
                 });
             }
         }];
@@ -72,10 +72,10 @@
 
             if (postError) {
                 [self cancel];
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
 
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
+                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:33.0];
                         return;
 
                     });
@@ -83,9 +83,9 @@
             }
             // success
             [self.jsonObjects addObject:postCustNameObject];
-            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self progress: 66.0];
+                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationInProgress progress: 66.0];
                 });
             }
         }];
@@ -100,20 +100,18 @@
             [self quitRunloop];
             if (fetchImageError) {
                 [self cancel];
-                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+                if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
+                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:66.0];
                         return;
                     });
                 }
             }
             // success
             self.image = image;
-            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)] && [self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)] &&
-                [self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)] && [self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)] ) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationSuccess];
-                    [self.delegate httpBinManagerOperation:self progress: 100.0];
+                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationSuccess progress:100.0];
                     [self.delegate httpBinManagerOperation:self didGetObject:(NSArray <NSDictionary *> *) self.jsonObjects didGetImage:self.image];
                 });
             }
