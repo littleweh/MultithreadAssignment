@@ -279,6 +279,7 @@
     self.button.backgroundColor = [UIColor grayColor];
     [self.label setText:@"Progress"];
     [self.label setTextColor:[UIColor orangeColor]];
+    [self.progressView setProgress:0.0];
     
     HTTPBinManagerOperation *operation = [[HTTPBinManagerOperation alloc] init];
     HTTPBinManager *manager = [HTTPBinManager sharedInstance];
@@ -311,8 +312,8 @@
 
 - (void)httpBinManager:(HTTPBinManager *)manager progress:(CGFloat)progressPercentage {
     NSLog(@"%f", progressPercentage);
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.progressView setProgress:progressPercentage / 100.0];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.progressView setProgress:progressPercentage / 100.0 animated: YES];
     } completion:^(BOOL finished) {
         if (progressPercentage == 100.0) {
             [self.label setText:@"Done!"];
