@@ -15,55 +15,97 @@
 @property (strong, nonatomic, readwrite) UIProgressView * progressView;
 @property (strong, nonatomic, readwrite) UIButton *button;
 @property (strong, nonatomic, readwrite) UILabel *label;
+@property (strong, nonatomic, readwrite) UIImageView *imageView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[ASWebServiceSDK sharedInstance] fetchGetResponseWithCallback:^(NSDictionary *result, NSError *error) {
-//        NSLog(@"args: %@", [result objectForKey:@"args"]);
-//        NSLog(@"headers: %@", [result objectForKey:@"headers"]);
-//        NSLog(@"origin: %@", [result objectForKey:@"origin"]);
-//        NSLog(@"url: %@", [result objectForKey:@"url"]);
-//    }];
-//
-//    [[ASWebServiceSDK sharedInstance] postCustomerName:@"test" callback:^(NSDictionary *result, NSError *error) {
-//        if (error) {
-//            NSLog(@"%@", error.localizedDescription);
-//        } else {
-//            NSLog(@"%@", result);
-//        }
-//    }];
-//
-//    [[ASWebServiceSDK sharedInstance] fetchImageWithCallback:^(UIImage *image, NSError *error) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-//            imageView.frame = CGRectMake(30, 30, 100, 100);
-//            imageView.contentMode = UIViewContentModeScaleAspectFit;
-//            [self.view addSubview:imageView];
-//        });
-//    }];
-    
 
-    
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     self.label = [[UILabel alloc] init];
     self.progressView = [[UIProgressView alloc] init];
+    self.imageView = [[UIImageView alloc] init];
+
     [self.view addSubview:self.button];
     [self.view addSubview:self.label];
     [self.view addSubview:self.progressView];
+    [self.view addSubview:self.imageView];
     
     [self setupProgressView];
     [self setupLabel];
     [self setupButton];
+    [self setupImageView];
+}
+
+#pragma mark - UI setup
+
+-(void) setupImageView {
+    [self.imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                               attribute:NSLayoutAttributeBottom
+                                                               relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                  toItem:self.label
+                                                               attribute:NSLayoutAttributeTop
+                                                              multiplier:1.0
+                                                                constant:-10.0];
+    
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                               attribute:NSLayoutAttributeCenterX
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:self.view
+                                                               attribute:NSLayoutAttributeCenterX
+                                                              multiplier:1.0
+                                                                constant:0.0];
+    
+    NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                                attribute:NSLayoutAttributeTrailing
+                                                                relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeTrailing
+                                                               multiplier:1.0
+                                                                 constant:-30.0];
+    
+    NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                               attribute:NSLayoutAttributeLeading
+                                                               relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                  toItem:self.view
+                                                               attribute:NSLayoutAttributeLeading
+                                                              multiplier:1.0
+                                                                constant:30.0];
+    
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                              attribute:NSLayoutAttributeHeight
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1.0
+                                                               constant:100.0];
+    
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.imageView
+                                                              attribute:NSLayoutAttributeWidth
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:nil
+                                                              attribute:NSLayoutAttributeNotAnAttribute
+                                                             multiplier:1.0
+                                                               constant:height.constant];
+    
+    [self.view addConstraint:bottom];
+    [self.view addConstraint:centerX];
+    [self.view addConstraint:trailing];
+    [self.view addConstraint:leading];
+    [self.imageView addConstraint:height];
+    [self.imageView addConstraint:width];
+
 }
 
 -(void) setupProgressView {
-    [self.progressView setProgress:50.0];
-    self.progressView.progressViewStyle = UIProgressViewStyleBar;
-    self.progressView.progressTintColor = [UIColor blackColor];
-    self.progressView.trackTintColor = [UIColor orangeColor];
+    [self.progressView setProgress:0.0];
+    self.progressView.progressViewStyle = UIProgressViewStyleDefault;
+    self.progressView.progressTintColor = [UIColor orangeColor];
+    self.progressView.trackTintColor = [UIColor blackColor];
     [self.progressView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:self.progressView
@@ -232,7 +274,12 @@
 }
 
 -(void) buttonTapped {
+    self.imageView.image = nil;
     [self.button setEnabled:NO];
+    self.button.backgroundColor = [UIColor grayColor];
+    [self.label setText:@"Progress"];
+    [self.label setTextColor:[UIColor orangeColor]];
+    
     HTTPBinManagerOperation *operation = [[HTTPBinManagerOperation alloc] init];
     HTTPBinManager *manager = [HTTPBinManager sharedInstance];
     [manager setDelegate:self];
@@ -256,23 +303,28 @@
     for (NSDictionary * object in objects) {
         NSLog(@"%@", object);
     }
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.frame = CGRectMake(30, 30, 100, 100);
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:imageView];
-    
+    [self.imageView setImage:image];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
     [self.button setEnabled:YES];
 }
 
 - (void)httpBinManager:(HTTPBinManager *)manager progress:(CGFloat)progressPercentage {
     NSLog(@"%f", progressPercentage);
-    [self.progressView setProgress:progressPercentage / 100.0 animated:YES];
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.progressView setProgress:progressPercentage / 100.0];
+    } completion:^(BOOL finished) {
+        if (progressPercentage == 100.0) {
+            [self.label setText:@"Done!"];
+            [self.label setTextColor:[UIColor blueColor]];
+            self.button.backgroundColor = [UIColor blackColor];
+        }
+    }];
+    
 }
 
 - (void)httpBinManager:(HTTPBinManager *)manager status:(HTTPBinManagerOperationStatus)statusCode {
     NSLog(@"status: %lu", (unsigned long)statusCode);
 }
-
-
 
 @end
