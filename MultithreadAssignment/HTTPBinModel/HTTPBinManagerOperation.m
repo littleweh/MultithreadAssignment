@@ -56,7 +56,6 @@
             [self.jsonObjects addObject:getRootObject];
             if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
                     [self.delegate httpBinManagerOperation:self progress: 33.0];
                 });
             }
@@ -86,7 +85,6 @@
             [self.jsonObjects addObject:postCustNameObject];
             if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
                     [self.delegate httpBinManagerOperation:self progress: 66.0];
                 });
             }
@@ -116,7 +114,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationSuccess];
                     [self.delegate httpBinManagerOperation:self progress: 100.0];
-                    [self.delegate httpBinManagerOperation:self didGetObject:self.jsonObjects didGetImage:self.image];
+                    [self.delegate httpBinManagerOperation:self didGetObject:(NSArray <NSDictionary *> *) self.jsonObjects didGetImage:self.image];
                 });
             }
         }];
