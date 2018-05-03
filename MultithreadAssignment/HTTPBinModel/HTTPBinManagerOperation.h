@@ -10,16 +10,16 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-    httpBinManagerOperationFail = -1,
-    HTTPBinManagerOperationInProgress = 0,
-    httpBinManagerOperationSuccess = 1,
+    httpBinManagerOperationBegin = 0,
+    httpBinManagerOperationInProgress = 1,
+    httpBinManagerOperationSuccess = 2,
+    httpBinManagerOperationFail = 3
 } HTTPBinManagerOperationStatus;
 
 @class HTTPBinManagerOperation;
 
 @protocol HTTPBinManagerOperationDelegate <NSObject>
--(void) httpBinManagerOperation: (HTTPBinManagerOperation*) operation status: (HTTPBinManagerOperationStatus) statusCode;
--(void) httpBinManagerOperation:(HTTPBinManagerOperation *) operation progress: (CGFloat) progressPercentage;
+-(void) httpBinManagerOperation: (HTTPBinManagerOperation*) operation status: (HTTPBinManagerOperationStatus) statusCode progress: (CGFloat) progressPercentage;
 -(void) httpBinManagerOperation:(HTTPBinManagerOperation *)operation didGetObject: (NSArray <NSDictionary *> *) objects didGetImage: (UIImage *) image;
 @end
 

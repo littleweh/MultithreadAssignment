@@ -10,8 +10,7 @@
 #import "HTTPBinManagerOperation.h"
 @class HTTPBinManager;
 @protocol HTTPBinManagerDelegate <NSObject>
--(void) httpBinManager: (HTTPBinManager *) manager status: (HTTPBinManagerOperationStatus) statusCode;
--(void) httpBinManager:(HTTPBinManager *) manager progress: (CGFloat) progressPercentage;
+-(void) httpBinManager: (HTTPBinManager *) manager status: (HTTPBinManagerOperationStatus) statusCode progress: (CGFloat) progressPercentage;
 -(void) httpBinManager:(HTTPBinManager *) manager didGetObject: (NSArray <NSDictionary *> *) objects didGetImage: (UIImage *) image;
 @end
 
