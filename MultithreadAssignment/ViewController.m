@@ -75,7 +75,7 @@
 }
 
 - (void)httpBinManager:(HTTPBinManager *)manager status:(HTTPBinManagerOperationStatus)statusCode {
-    NSLog(@"%lu", (unsigned long)statusCode);
+    NSLog(@"status: %lu", (unsigned long)statusCode);
 }
 
 

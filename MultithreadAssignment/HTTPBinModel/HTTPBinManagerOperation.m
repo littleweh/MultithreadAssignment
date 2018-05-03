@@ -111,8 +111,10 @@
             }
             // success
             self.image = image;
-            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)] && [self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)]) {
+            if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)] && [self.delegate respondsToSelector:@selector(httpBinManagerOperation:progress:)] &&
+                [self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationSuccess];
                     [self.delegate httpBinManagerOperation:self progress: 100.0];
                     [self.delegate httpBinManagerOperation:self didGetObject:self.jsonObjects didGetImage:self.image];
                 });
