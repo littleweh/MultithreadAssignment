@@ -44,7 +44,7 @@
 //    }];
     
     HTTPBinManagerOperation *operation = [[HTTPBinManagerOperation alloc] init];
-    HTTPBinManager *manager = [[HTTPBinManager alloc]init];
+    HTTPBinManager *manager = [HTTPBinManager sharedInstance];
     [manager setDelegate:self];
     [manager executeOperation:operation];
 }
@@ -53,6 +53,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) dealloc {
+    NSLog(@"ViewController dealloc");
 }
 
 

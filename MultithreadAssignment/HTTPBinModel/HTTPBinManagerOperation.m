@@ -41,6 +41,7 @@
         
         // fetchGetResponse
         [sdk fetchGetResponseWithCallback:^(NSDictionary *getRootObject, NSError *error) {
+            [self quitRunloop];
 
             if (error) {
                 [self cancel];
@@ -59,7 +60,6 @@
                     [self.delegate httpBinManagerOperation:self progress: 33.0];
                 });
             }
-            [self quitRunloop];
         }];
         
         [self doRunloop];
@@ -69,14 +69,16 @@
         
         //postCustomerName
         [sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
+            [self quitRunloop];
+
             if (postError) {
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        
+
                         [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail];
                         return;
-                        
+
                     });
                 }
             }
@@ -88,7 +90,6 @@
                     [self.delegate httpBinManagerOperation:self progress: 66.0];
                 });
             }
-            [self quitRunloop];
         }];
         
         [self doRunloop];
@@ -98,6 +99,7 @@
         
         // fetchImage
         [sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
+            [self quitRunloop];
             if (fetchImageError) {
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:)]) {
@@ -115,7 +117,6 @@
                     [self.delegate httpBinManagerOperation:self didGetObject:self.jsonObjects didGetImage:self.image];
                 });
             }
-            [self quitRunloop];
         }];
     }
 }
