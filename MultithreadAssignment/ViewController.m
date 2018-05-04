@@ -284,6 +284,7 @@
     [self.progressView setHidden:NO];
     
     HTTPBinManagerOperation *operation = [[HTTPBinManagerOperation alloc] init];
+    [operation setSdk:[ASWebServiceSDK sharedInstance]];
     HTTPBinManager *manager = [HTTPBinManager sharedInstance];
     [manager setDelegate:self];
     [manager executeOperation:operation];

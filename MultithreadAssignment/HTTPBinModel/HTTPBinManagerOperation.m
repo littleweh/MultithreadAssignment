@@ -33,15 +33,17 @@
     }
     return _image;
 }
+-(void) setSdk:(ASWebServiceSDK *)sdk {
+    _sdk = sdk;
+}
 
 #pragma mark - override main
 -(void) main {
     @autoreleasepool {
-        ASWebServiceSDK * sdk = [ASWebServiceSDK sharedInstance];
         __weak HTTPBinManagerOperation *weakSelf = self;
         
         // fetchGetResponse
-        [sdk fetchGetResponseWithCallback:^(NSDictionary *getRootObject, NSError *error) {
+        [self.sdk fetchGetResponseWithCallback:^(NSDictionary *getRootObject, NSError *error) {
             [self quitRunloop];
 
             if (error) {
@@ -68,17 +70,15 @@
         }
         
         //postCustomerName
-        [sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
+        [self.sdk postCustomerName:@"KKBOX" callback:^(NSDictionary *postCustNameObject, NSError *postError) {
             [self quitRunloop];
 
             if (postError) {
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-
                         [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:33.0];
                         return;
-
                     });
                 }
             }
@@ -97,7 +97,7 @@
         }
         
         // fetchImage
-        [sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
+        [self.sdk fetchImageWithCallback:^(UIImage *image, NSError *fetchImageError) {
             [self quitRunloop];
             if (fetchImageError) {
                 [self cancel];
