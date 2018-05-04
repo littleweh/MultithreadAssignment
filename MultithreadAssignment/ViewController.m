@@ -284,6 +284,7 @@
     [self.progressView setHidden:NO];
     
     HTTPBinManagerOperation *operation = [[HTTPBinManagerOperation alloc] init];
+    [operation setSdk:[ASWebServiceSDK sharedInstance]];
     HTTPBinManager *manager = [HTTPBinManager sharedInstance];
     [manager setDelegate:self];
     [manager executeOperation:operation];
@@ -315,7 +316,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         [self.progressView setProgress:progressPercentage / 100.0];
     } completion:^(BOOL finished) {
-        if (progressPercentage == 100.0) {
+        if (statusCode == httpBinManagerOperationSuccess && progressPercentage == 100.0) {
             [UIView animateWithDuration:0.25 animations:^{
                 [self.label setText:@"Done!"];
                 [self.label setTextColor:[UIColor blueColor]];

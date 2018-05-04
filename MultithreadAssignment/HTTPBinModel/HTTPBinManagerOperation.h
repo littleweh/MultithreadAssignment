@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+@import UIKit;
+#import "ASWebServiceSDK.h"
 
 typedef enum : NSUInteger {
     httpBinManagerOperationBegin = 0,
@@ -29,5 +30,6 @@ typedef enum : NSUInteger {
     BOOL runloopRunning;
 }
 @property (weak, nonatomic) id <HTTPBinManagerOperationDelegate> delegate;
+@property (strong, nonatomic) ASWebServiceSDK * sdk;
 
 @end

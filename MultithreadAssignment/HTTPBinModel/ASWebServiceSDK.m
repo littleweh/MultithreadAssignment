@@ -17,6 +17,9 @@ static NSString *const endPointImagePNG = @"image/png";
 @interface ASWebServiceSDK ()
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSMutableArray <NSURLSessionDataTask *> * dataTasks;
+@property (strong, nonatomic) NSString * fetchGetURLString;
+@property (strong, nonatomic) NSString * postCustNameURLString;
+@property (strong, nonatomic) NSString * fetchImageURLString;
 @end
 
 @implementation ASWebServiceSDK
@@ -30,6 +33,15 @@ static NSString *const endPointImagePNG = @"image/png";
         instance = [[ASWebServiceSDK alloc]init];
     });
     return instance;
+}
+
+-(instancetype) init {
+    if (self = [super init]) {
+        _fetchGetURLString = [[NSString alloc] initWithFormat: @"%@%@",httpBinDomain, endPointGet];
+        _postCustNameURLString = [[NSString alloc] initWithFormat:@"%@%@", httpBinDomain, endPointPost];
+        _fetchImageURLString = [NSString stringWithFormat:@"%@%@", httpBinDomain, endPointImagePNG];
+    }
+    return self;
 }
 
 #pragma mark - lazy property
@@ -55,8 +67,8 @@ static NSString *const endPointImagePNG = @"image/png";
 #pragma mark - GET, POST methods
 
 -(void)fetchGetResponseWithCallback: (void(^)(NSDictionary *, NSError *)) callback {
-    NSString *getURLString = [[NSString alloc] initWithFormat: @"%@%@",httpBinDomain, endPointGet];
-    NSURL *getURL = [NSURL URLWithString:getURLString];
+//    NSString *getURLString = [[NSString alloc] initWithFormat: @"%@%@",httpBinDomain, endPointGet];
+    NSURL *getURL = [NSURL URLWithString:self.fetchGetURLString];
     
     NSURLSession *session = self.session;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:getURL
@@ -104,8 +116,8 @@ static NSString *const endPointImagePNG = @"image/png";
 }
 
 -(void)postCustomerName:(NSString *)name callback: (void(^)(NSDictionary *, NSError *)) callback {
-    NSString *postURLString = [[NSString alloc] initWithFormat:@"%@%@", httpBinDomain, endPointPost];
-    NSURL *postURL = [NSURL URLWithString:postURLString];
+//    NSString *postURLString = [[NSString alloc] initWithFormat:@"%@%@", httpBinDomain, endPointPost];
+    NSURL *postURL = [NSURL URLWithString:self.postCustNameURLString];
 
     NSString *post = [NSString stringWithFormat:@"custname=%@", name];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding];
@@ -162,8 +174,8 @@ static NSString *const endPointImagePNG = @"image/png";
 }
 
 -(void)fetchImageWithCallback: (void(^)(UIImage *, NSError *)) callback {
-    NSString *fetchImageURLString = [NSString stringWithFormat:@"%@%@", httpBinDomain, endPointImagePNG];
-    NSURL *fetchImageURL = [NSURL URLWithString:fetchImageURLString];
+//    NSString *fetchImageURLString = [NSString stringWithFormat:@"%@%@", httpBinDomain, endPointImagePNG];
+    NSURL *fetchImageURL = [NSURL URLWithString:self.fetchImageURLString];
     
     NSURLSession *session = self.session;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:fetchImageURL
