@@ -38,6 +38,7 @@
 -(void) main {
     @autoreleasepool {
         ASWebServiceSDK * sdk = [ASWebServiceSDK sharedInstance];
+        __weak HTTPBinManagerOperation *weakSelf = self;
         
         // fetchGetResponse
         [sdk fetchGetResponseWithCallback:^(NSDictionary *getRootObject, NSError *error) {
@@ -46,8 +47,8 @@
             if (error) {
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:0.0];
+                    dispatch_async(dispatch_get_main_queue(), ^{ 
+                        [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:0.0];
                         return;
                     });
                 }
@@ -56,7 +57,7 @@
             [self.jsonObjects addObject:getRootObject];
             if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationInProgress progress: 33.0];
+                    [weakSelf.delegate httpBinManagerOperation:self status:httpBinManagerOperationInProgress progress: 33.0];
                 });
             }
         }];
@@ -75,7 +76,7 @@
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
 
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:33.0];
+                        [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:33.0];
                         return;
 
                     });
@@ -85,7 +86,7 @@
             [self.jsonObjects addObject:postCustNameObject];
             if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationInProgress progress: 66.0];
+                    [weakSelf.delegate httpBinManagerOperation:self status:httpBinManagerOperationInProgress progress: 66.0];
                 });
             }
         }];
@@ -102,7 +103,7 @@
                 [self cancel];
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:66.0];
+                        [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:66.0];
                         return;
                     });
                 }
@@ -111,8 +112,8 @@
             self.image = image;
             if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:didGetObject:didGetImage:)] && [self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)] ) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.delegate httpBinManagerOperation:self status:httpBinManagerOperationSuccess progress:100.0];
-                    [self.delegate httpBinManagerOperation:self didGetObject:(NSArray <NSDictionary *> *) self.jsonObjects didGetImage:self.image];
+                    [weakSelf.delegate httpBinManagerOperation:self status:httpBinManagerOperationSuccess progress:100.0];
+                    [weakSelf.delegate httpBinManagerOperation:self didGetObject:(NSArray <NSDictionary *> *) self.jsonObjects didGetImage:self.image];
                 });
             }
         }];
