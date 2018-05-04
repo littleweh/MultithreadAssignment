@@ -51,9 +51,9 @@
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{ 
                         [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:0.0];
-                        return;
                     });
                 }
+                return;
             }
             // success
             [self.jsonObjects addObject:getRootObject];
@@ -78,9 +78,9 @@
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:33.0];
-                        return;
                     });
                 }
+                return;
             }
             // success
             [self.jsonObjects addObject:postCustNameObject];
@@ -104,9 +104,9 @@
                 if ([self.delegate respondsToSelector:@selector(httpBinManagerOperation:status:progress:)]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [weakSelf.delegate httpBinManagerOperation:self status: httpBinManagerOperationFail progress:66.0];
-                        return;
                     });
                 }
+                return;
             }
             // success
             self.image = image;
