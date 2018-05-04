@@ -316,7 +316,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         [self.progressView setProgress:progressPercentage / 100.0];
     } completion:^(BOOL finished) {
-        if (progressPercentage == 100.0) {
+        if (statusCode == httpBinManagerOperationSuccess && progressPercentage == 100.0) {
             [UIView animateWithDuration:0.25 animations:^{
                 [self.label setText:@"Done!"];
                 [self.label setTextColor:[UIColor blueColor]];
